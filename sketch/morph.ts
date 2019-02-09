@@ -17,7 +17,7 @@ class Morph {
     this.shapes.push({ points: Shapes.circle(p, 100), color: p.color('#009CDF') });
     this.shapes.push({ points: Shapes.circle(p, 150), color: p.color(255, 204, 0) });
     this.shapes.push({ points: Shapes.square(p, 50), color: p.color(175, 100, 220) });
-    // this.shapes.push({points: Shapes.star(p, 0, 0, 30, 70, 5), color: p.color('#E23838')});
+    this.shapes.push({points: Shapes.star(p, 0, 0, 30, 70, 5), color: p.color('#E23838')});
 
     // setup morph array
     this.morph = new Array<p5.Vector>();
@@ -46,14 +46,16 @@ class Morph {
       // Check how far we are from target
       totalDistance += p5.Vector.dist(v1, v2);
     }
+  }
 
+  changeShape() {
     // If all the vertices are close, switch shape
-    if (totalDistance < 0.1) {
+    //if (totalDistance < 0.1) {
       this.currentShape++;//= !this.state;
       if (this.currentShape >= this.shapes.length) {
         this.currentShape = 0;
       }
-    }
+    //}
   }
 
   draw(p: p5) {
@@ -63,7 +65,9 @@ class Morph {
     const points = this.shapes[this.currentShape].points;
 
     // Draw relative to center
-    p.translate(p.width / 2, p.height / 2);
+    // p.translate(p.width / 2, p.height / 2);
+    p.push();
+    p.translate(p.mouseX, p.mouseY);
     p.strokeWeight(4);
     // Draw a polygon that makes up all the vertices
     p.beginShape();
@@ -76,7 +80,7 @@ class Morph {
     }
 
     p.endShape(p.CLOSE);
-
+    p.pop();
   }
 
 }
