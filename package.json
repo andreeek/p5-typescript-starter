@@ -4,13 +4,16 @@
   "description": "Project to quickly get something working in [p5.js](https://p5js.org/) and [typescript](https://www.typescriptlang.org/)",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"browser-sync start --server -w\" \" tsc --watch\""
+    "start": "concurrently \"browser-sync start --server -w --ignore sketch\" \" tsc --watch\"",
+    "browsersync": "browser-sync start --server -w --ignore sketch",
+    "tsc": "tsc --watch"
   },
   "homepage": "https://github.com/Gaweph/p5-typescript-starter#readme",
   "devDependencies": {
     "@types/p5": "^0.7.1",
     "browser-sync": "^2.26.3",
     "concurrently": "^3.6.1",
+    "tsc": "^1.20150623.0",
     "typescript": "^2.9.2"
   }
 }
